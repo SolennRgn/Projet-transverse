@@ -1,0 +1,25 @@
+{
+  "name": "ttebotmsg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimRD/Trouve-Ton-Excuse-Messenger.git"
+  },
+  "author": "Timothee Marguier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TimRD/Trouve-Ton-Excuse-Messenger/issues"
+  },
+  "homepage": "https://github.com/TimRD/Trouve-Ton-Excuse-Messenger#readme"
+}
