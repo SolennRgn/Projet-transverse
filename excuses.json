@@ -3,478 +3,571 @@
         {
             "id": 1,
             "humor": 2,
-            "text": "j'étais bloqué dans les toilettes"
+            "note": 0,
+            "text": "j'étais bloqué dans les toilettes 🚽"
             
         },
         {
             "id": 2,
             "humor": 1,
-            "text": "je devais aller voir la CPE pour une abscence injustifiée"
+            "note": 0,
+            "text": "je devais aller voir la CPE pour une abscence injustifiée 👨🏻 😕"
         },
         {
             "id": 3,
             "humor": 2,
-            "text": "je suis allé boire aux toilettes"
+            "note": 0,
+            "text": "je suis allé boire aux toilettes 🚽"
         },
         {
             "id": 4,
             "humor": 2,
-            "text": "je ne retrouvais plus la salle"
+            "note": 0,
+            "text": "je ne retrouvais plus la salle 😕"
         },
         {
             "id": 5,
             "humor": 3,
-            "text": "j'ai guidé des parents qui avaient un rendez-vous"
+            "note": 0,
+            "text": "j'ai guidé des parents qui avaient un rendez-vous 😕"
         },
         {
             "id": 6,
             "humor": 2,
-            "text": "je me suis perdu dans les couloirs"
+            "note": 0,
+            "text": "je me suis perdu dans les couloirs 😕"
         },
         {
             "id": 7,
             "humor": 2,
-            "text": "j'ai oublié mes affaires dans le cours précédent"
+            "note": 0,
+            "text": "j'ai oublié mes affaires dans le cours précédent 📓 😕"
         },
         {
             "id": 8,
             "humor": 1,
-            "text": "je parlais avec mon professeur du cours d'avant concernant le contrôle de la semaine prochaine"
+            "note": 0,
+            "text": "je parlais avec mon professeur du cours d'avant concernant le contrôle de la semaine prochaine ✒️ 😕"
         },
         {
             "id": 9,
             "humor": 2,
-            "text": "j'avais oublié de rendre le cahier de maths d'un de mes camarades"
+            "note": 0,
+            "text": "j'avais oublié de rendre le cahier de maths d'un de mes camarades 📓 😕"
         },
         {
             "id": 10,
             "humor": 3,
-            "text": "je me suis trompé de cours, je pensais qu'on avait sport"
+            "note": 0,
+            "text": "je me suis trompé de cours, je pensais qu'on avait sport 🏃🏻"
         },
         {
             "id": 11,
             "humor": 1,
-            "text": "je viens d'accompagner un ami à l'infirmerie"
+            "note": 0,
+            "text": "je viens d'accompagner un ami à l'infirmerie 💊"
         },
         {
             "id": 12,
             "humor": 2,
-            "text": "il y avait la queue aux toilettes"
+            "note": 0,
+            "text": "il y avait la queue aux toilettes 🚽"
         },
         {
             "id": 13,
             "humor": 1,
-            "text": "j'étais dans le bureau du CPE"
+            "note": 0,
+            "text": "j'étais dans le bureau du CPE 👨🏻"
         },
         {
             "id": 14,
             "humor": 3,
-            "text": "ma montre s'est arrétée, j'étais donc en avance normalement ! "
+            "note": 0,
+            "text": "ma montre s'est arrétée, j'étais donc en avance normalement ! 😐 "
         },
         {
             "id": 15,
             "humor": 1,
-            "text": "je parlais avec le surveillant"
+            "note": 0,
+            "text": "je parlais avec le surveillant 👨🏻"
         },
         {
             "id": 16,
             "humor": 2,
-            "text": "j'étais au téléphone pour un coup de fil important"
+            "note": 0,
+            "text": "j'étais au téléphone pour un coup de fil important 📱"
         },
         {
             "id": 17,
             "humor": 2,
-            "text": "je devais réconforter mon amie qui était en larme"
+            "note": 0,
+            "text": "je devais réconforter mon amie qui était en larme 😪"
         },
         {
             "id": 18,
             "humor": 3,
-            "text": "mes amies se disputaient, je devais rester avec elles pour regler le problème"
+            "note": 0,
+            "text": "mes amies se disputaient, je devais rester avec elles pour regler le problème 😶"
         }
     ],
     "absence": [
         {
             "id": 1,
             "humor": 3,
-            "text": "j'ai du amener mon chien au vétérinaire car il s'est cassé la pate"
+            "note": 0,
+            "text": "j'ai du amener mon chien au vétérinaire car il s'est cassé la pate 🐶"
         },
         {
             "id": 2,
             "humor": 1,
+            "note": 0,
             "text": "j'étais malade"
         },
         {
             "id": 3,
             "humor": 2,
+            "note": 0,
             "text": "j'étais au mariage de ma tante"
         },
         {
             "id": 4,
             "humor": 2,
+            "note": 0,
             "text": "ma porte d'entrée était coincée 😐"
         },
         {
             "id": 5,
             "humor": 2,
+            "note": 0,
             "text": "je n'arrivais pas à sortir des toilettes 😐"
         },
         {
             "id": 8,
             "humor": 1,
+            "note": 0,
             "text": "je passais des oraux pour une école"
         },
         {
             "id": 9,
             "humor": 1,
+            "note": 0,
             "text": "je ne me sentais pas très bien 😐"
         },
         {
             "id": 10,
             "humor": 1,
+            "note": 0,
             "text": "je passais des concours"
         },
         {
             "id": 11,
             "humor": 3,
-            "text": "la question n'est pas de savoir pourquoi je n'étais pas là mais plutôt pourquoi je suis revenu"
+            "note": 0,
+            "text": "la question n'est pas de savoir pourquoi je n'étais pas là mais plutôt pourquoi je suis revenu 😇"
         },
         {
             "id": 12,
             "humor": 3,
-            "text": "ma famille belge a débarqué chez moi"
+            "note": 0,
+            "text": "ma famille belge a débarqué chez moi 😐"
         },
         {
             "id": 13,
             "humor": 1,
-            "text": "j'étais au commissariat car je me suis fais cambriolé avant-hier soir 😐"
+            "note": 0,
+            "text": "j'étais au commissariat car je me suis fais cambriolé avant-hier soir 😐 🚓"
         },
         {
             "id": 14,
             "humor": 1,
+            "note": 0,
             "text": "je me suis trompé dans mon emploi du temps 😐"
         },
         {
             "id": 15,
             "humor": 1,
+            "note": 0,
             "text": "j'ai du garder ma petite soeur qui était malade 😐"
         },
         {
             "id": 16,
             "humor": 3,
-            "text": "j'étais sur que le changement d'heure était aujourd'hui 😐"
+            "note": 0,
+            "text": "j'étais sur que le changement d'heure était aujourd'hui 😐 🕘"
         },
         {
             "id": 17,
             "humor": 3,
+            "note": 0,
             "text": "je pensais qu'on était dimanche 😐"
         },
         {
             "id": 18,
             "humor": 1,
+            "note": 0,
             "text": "j'étais à un enterrement 😔 "
         },
         {
             "id": 19,
             "humor": 3,
-            "text": "le reste de la soirée d'hier n'a pas voulu de moi ici"
+            "note": 0,
+            "text": "le reste de la soirée d'hier n'a pas voulu de moi ici 🕘"
         },
         {
             "id": 20,
             "humor": 2,
-            "text": "j'ai eu une réaction allergique à une crème de soin"
+            "note": 0,
+            "text": "j'ai eu une réaction allergique à une crème de soin 😐"
         },
         {
             "id": 21,
             "humor": 1,
+            "note": 0,
             "text": "j'avais un rendez-vous chez le medecin 😫"
         },
         {
             "id": 22,
             "humor": 3,
+            "note": 0,
             "text": "j'ai mal regardé l'emploi du temps 😔"
         },
         {
             "id": 23,
             "humor": 3,
+            "note": 0,
             "text": "je me suis évanoui en me levant aussi tôt 😫"
         },
         {
             "id": 24,
             "humor": 3,
-            "text": "j'étais déjà trop en retard, ça ne servait à rien que je vienne"
+            "note": 0,
+            "text": "j'étais déjà trop en retard, ça ne servait à rien que je vienne 😔"
         }
     ],
     "bus": [
         {
             "id": 1,
             "humor": 1,
-            "text": "j'ai été controlé dans le bus"
+            "note": 0,
+            "text": "j'ai été controlé dans le bus 🚌"
         },
         {
             "id": 2,
             "humor": 1,
-            "text": "mon bus a eu un accident"
+            "note": 0,
+            "text": "mon bus a eu un accident 🚌"
         },
         {
             "id": 3,
             "humor": 1,
-            "text": "une dame a fait un malaise dans mon bus"
+            "note": 0,
+            "text": "une dame a fait un malaise dans mon bus 🚌"
         },
         {
             "id": 4,
             "humor": 1,
-            "text": "mon bus était coincé dans les embouteillages"
+            "note": 0,
+            "text": "mon bus était coincé dans les embouteillages 🚌"
         },
         {
             "id": 5,
             "humor": 3,
-            "text": "il y avait un sanglier sur la route"
+            "note": 0,
+            "text": "il y avait un sanglier sur la route 😫"
         },
         {
             "id": 6,
             "humor": 3,
-            "text": "j'ai eu une coupure de courant qui a eteint mon réveil"
+            "note": 0,
+            "text": "j'ai eu une coupure de courant qui a eteint mon réveil ⏰"
         },
         {
             "id": 7,
             "humor": 3,
-            "text": "j'avais une céréale coincée dans le nez, je reviens tout juste des urgences"
+            "note": 0,
+            "text": "j'avais une céréale coincée dans le nez, je reviens tout juste des urgences 👃🏻"
         },
         {
             "id": 8,
             "humor": 1,
-            "text": "il y avait un accident sur la route"
+            "note": 0,
+            "text": "il y avait un accident sur la route 🚗"
         },
         {
             "id": 9,
             "humor": 2,
-            "text": "la roue de mon bus a pris feu"
+            "note": 0,
+            "text": "la roue de mon bus a pris feu 🔥"
         },
         {
             "id": 10,
             "humor": 2,
-            "text": "il y a eu une bagarre dans mon bus, le chauffeur s'est donc arrété"
+            "note": 0,
+            "text": "il y a eu une bagarre dans mon bus, le chauffeur s'est donc arrété 🚈"
         },
         {
             "id": 11,
             "humor": 3,
-            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps!"
+            "note": 0,
+            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps! 🕘"
         }
     ],
     "velo": [
         {
             "id": 1,
             "humor": 2,
-            "text": "mon vélo a déraillé"
+            "note": 0,
+            "text": "mon vélo a déraillé 🚲"
         },
         {
             "id": 2,
             "humor": 1,
-            "text": "mon pneu a creuvé "
+            "note": 0,
+            "text": "mon pneu a creuvé 🚲"
         },
         {
             "id": 3,
             "humor": 2,
-            "text": "je suis tombé en vélo et je me suis fais super mal"
+            "note": 0,
+            "text": "je suis tombé en vélo et je me suis fais super mal 🚲"
         },
         {
             "id": 4,
             "humor": 2,
-            "text": "je me suis fais rentrer dedans par une voiture mais ça va ne vous en faites pas"
+            "note": 0,
+            "text": "je me suis fais rentrer dedans par une voiture mais ça va ne vous en faites pas 🚗"
         },
         {
             "id": 5,
             "humor": 3,
-            "text": "mon cadenas de vélo ne voulait pas se fermer"
+            "note": 0,
+            "text": "mon cadenas de vélo ne voulait pas se fermer 🔐 🚲"
         },
         {
             "id": 6,
             "humor": 3,
-            "text": "Je ne retrouvais plus mes clefs de cadenas pour mon vélo"
+            "note": 0,
+            "text": "Je ne retrouvais plus mes clefs de cadenas pour mon vélo 🔐 🚲"
         },
         {
             "id": 7,
             "humor": 3,
-            "text": "j'ai eu une coupure de courant qui a eteint mon réveil"
+            "note": 0,
+            "text": "j'ai eu une coupure de courant qui a eteint mon réveil ⏰ "
         },
         {
             "id": 8,
             "humor": 3,
-            "text": "j'avais un chocapic coincé dans le nez, j'ai du aller aux urgences"
+            "note": 0,
+            "text": "j'avais un chocapic coincé dans le nez, j'ai du aller aux urgences 👃🏻"
         },
         {
             "id": 9,
             "humor": 2,
-            "text": "on m'a volé mon vélo"
+            "note": 0,
+            "text": "on m'a volé mon vélo 🚲"
         },
         {
             "id": 10,
             "humor": 2,
-            "text": "on m'a volé mes roues de vélo"
+            "note": 0,
+            "text": "on m'a volé mes roues de vélo 🚲"
         },
         {
             "id": 11,
             "humor": 1,
-            "text": "on m'a creuvé mes roues de vélo"
+            "note": 0,
+            "text": "on m'a creuvé mes roues de vélo 🚲"
         },
         {
             "id": 12,
             "humor": 2,
-            "text": "il n'y avait pas de place pour accrocher mon vélo"
+            "note": 0,
+            "text": "il n'y avait pas de place pour accrocher mon vélo 🚲"
         },
         {
             "id": 13,
             "humor": 3,
-            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps!"
+            "note": 0,
+            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps! 🕘"
         }
     ],
     "train": [
         {
             "id": 1,
             "humor": 1,
-            "text": "il y avait la grève"
+            "note": 0,
+            "text": "il y avait la grève 🚈"
         },
         {
             "id": 2,
             "humor": 1,
-            "text": "il y avait un accident sur les rails"
+            "note": 0,
+            "text": "il y avait un accident sur les rails 🚈"
         },
         {
             "id": 3,
             "humor": 1,
-            "text": "il y a eu un accident de personne"
+            "note": 0,
+            "text": "il y a eu un accident voyageur 🚈"
         },
         {
             "id": 4,
             "humor": 1,
-            "text": "il y avait des perturbations sur toute la ligne de train"
+            "note": 0,
+            "text": "il y avait des perturbations sur toute la ligne de train 🚈"
         },
         {
             "id": 5,
             "humor": 1,
-            "text": "il y avait un colis suspect"
+            "note": 0,
+            "text": "il y avait un colis suspect 📦"
         },
         {
             "id": 6,
             "humor": 3,
-            "text": "le chien d'un policier a apprécié un peu trop l'odeur de mes poches"
+            "note": 0,
+            "text": "le chien d'un policier a un peu trop apprécié l'odeur de mes poches 🚓 🐶"
         },
         {
             "id": 6,
             "humor": 2,
-            "text": "une dame a s'est evénouie sur mon épaule dans le train, j'ai attendu les urgences avec elle"
+            "note": 0,
+            "text": "une dame s'est evénouie sur mon épaule dans le train, j'ai attendu les urgences avec elle 🚈"
         },
         {
             "id": 7,
             "humor": 3,
-            "text": "j'ai eu une coupure de courant qui a eteint mon réveil"
+            "note": 0,
+            "text": "j'ai eu une coupure de courant qui a eteint mon réveil ⏰"
         },
         {
             "id": 8,
             "humor": 3,
-            "text": "j'avais un chocapic coincé dans le nez, j'ai du aller aux urgences"
+            "note": 0,
+            "text": "j'avais un chocapic coincé dans le nez, j'ai du aller aux urgences 👃🏻"
         },
         {
             "id": 9,
             "humor": 1,
-            "text": "mon train a été suprimé"
+            "note": 0,
+            "text": "mon train a été suprimé 🚈"
         },
         {
             "id": 10,
             "humor": 2,
-            "text": "mon train s'est arrété en pleine voie pour une raison indéterminée"
+            "note": 0,
+            "text": "mon train s'est arrété en pleine voie pour une raison indéterminée 🚈"
         },
         {
             "id": 11,
             "humor": 3,
-            "text": "les controleurs m'ont demandé un billet que je n'ai jamais vraiment achété"
+            "note": 0,
+            "text": "les controleurs m'ont demandé un billet que je n'ai jamais vraiment achété 💵"
         },
         {
             "id": 12,
             "humor": 3,
-            "text": "j'essayais d'expliquer aux controleurs pourquoi une amende ne me serait vraiment pas utile, j'ai perdu le débat + 60 euros"
+            "note": 0,
+            "text": "j'essayais d'expliquer aux controleurs pourquoi une amende ne me serait pas utile.J'ai perdu le débat + 60 euros ... 💵"
         },
         {
             "id": 13,
             "humor": 3,
-            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps!"
+            "note": 0,
+            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps! ⏰"
         }
     ],
     "marche": [
         {
             "id": 1,
             "humor": 1,
-            "text": "j'ai aidé une mamie qui s'est faite renversée"
+            "note": 0,
+            "text": "j'ai aidé une mamie qui s'est faite renversée 👵🏻"
         },
         {
             "id": 2,
             "humor": 2,
-            "text": "un touriste m'a demandé le chemin"
+            "note": 0,
+            "text": "un touriste m'a demandé le chemin 🌍"
         },
         {
             "id": 3,
             "humor": 2,
-            "text": "je me suis fais controlé par la police"
+            "note": 0,
+            "text": "je me suis fais controlé par la police 🚓"
         },
         {
             "id": 4,
             "humor": 1,
-            "text": "j'ai aidé une personne qui était tombée par terre"
+            "note": 0,
+            "text": "j'ai aidé une personne qui était tombée par terre 😬"
         },
         {
             "id": 5,
             "humor": 3,
-            "text": "je me suis fais voler ma chaussure par mon chien ce matin"
+            "note": 0,
+            "text": "je me suis fais voler ma chaussure par mon chien ce matin 🐶"
         },
         {
             "id": 6,
             "humor": 3,
-            "text": "un chew gum m'a retenu en chemin"
+            "note": 0,
+            "text": "un chewing-gum m'a retenu en chemin 🍬"
         },
         {
             "id": 7,
             "humor": 2,
-            "text": "je suis resté coincé dans mon ascenseur"
+            "note": 0,
+            "text": "je suis resté coincé dans mon ascenseur 😬"
         },
         {
             "id": 8,
             "humor": 2,
-            "text": "j'ai du nettoyer mon manteau car un pigeon m'a fait dessus"
+            "note": 0,
+            "text": "j'ai du nettoyer mon manteau car un pigeon m'a fait dessus 😐"
         },
         {
             "id": 9,
             "humor": 3,
-            "text": "j'ai eu une coupure de courant chez moi cette nuit, ça a éteint mon réveil"
+            "note": 0,
+            "text": "j'ai eu une coupure de courant chez moi cette nuit, ça a éteint mon réveil ⏰ 😐"
         },
         {
             "id": 10,
             "humor": 2,
-            "text": "je ne trouvais plus les clefs de chez moi pour fermer la porte"
+            "note": 0,
+            "text": "je ne trouvais plus les clefs de chez moi pour fermer la porte 😐"
         },
         {
             "id": 11,
             "humor": 3,
-            "text": "j'avais un chocapic coincé dans le nez, j'ai du aller aux urgences"
+            "note": 0,
+            "text": "j'avais un chocapic coincé dans le nez, j'ai du aller aux urgences 👃🏻"
         },
         {
             "id": 12,
             "humor": 3,
-            "text": "j'ai glissé sur une plaque mouillée"
+            "note": 0,
+            "text": "j'ai glissé sur une plaque mouillée 😐"
         },
         {
             "id": 13,
             "humor": 3,
-            "text": "Et puis vous savez, maman a mis 8 jours à me mettre au monde. Je n'ai jamais pu rattraper ce retard"
+            "note": 0,
+            "text": "Et puis vous savez, maman a mis 8 jours à me mettre au monde. Je n'ai jamais pu rattraper ce retard ⏰"
         },
         {
             "id": 14,
             "humor": 3,
-            "text": "j'ai marché sur une crotte de chien en venant, je ne voulais pas vous faire partager l'odeur pendant tout le cours"
+            "note": 0,
+            "text": "j'ai marché sur une crotte de chien en venant, je ne voulais pas vous faire partager l'odeur pendant tout le cours 🐶"
         },
         {
             "id": 15,
             "humor": 3,
-            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps!"
+            "note": 0,
+            "text": "je suis sorti trop tard de chez moi, quitte à etre en retard, j'ai pris mon temps! ⏰"
         }
     ]
 }

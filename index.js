@@ -1,11 +1,21 @@
 'use strict';
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Imports dependencies and set up http server
+
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const adapter = new FileSync('excuses.json')
+const db = low(adapter)
+
+var fs = require('fs');
+
+
 const 
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
+
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('Webhook is listening'));
@@ -59,6 +69,18 @@ app.get('/webhook', (req, res) => {
     }
   }
 });
+//Testing the incrementation or the note
+app.get('/monjson', (req,res) => {
+  let result = db.get('intercours').find({ id: 4 }).update('note', n => n + 1).value();
+  db.write();
+  var change = result.text;
+  res.send(result);
+})
+//Import the JSON file on the /excuse url
+app.get('/excuses', (req,res) => {
+  let excuses = db.value();
+  res.send(excuses);
+})
 
 //handleMessage is when is not like a "reply", it's more a classic message
 function handleMessage(sender_psid, received_message) {
@@ -111,9 +133,9 @@ function handlePostback(sender_psid, received_postback) {
   var humor;
   console.log("Le paylod vaut : " + payload)
   //I call the excuse API
-  request('http://54.37.159.119/trouvetonexcuse/API/excuses.json', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var importedJSON = JSON.parse(body);
+  
+      var importedJSON = JSON.parse(fs.readFileSync('excuses.json', 'utf8'));
+      console.log(importedJSON);
       if (payload==='yes') {    
         response = {
         "text": `Cool ! On va essayer de savoir ce qu'il te faut ! Tu es absent ou en retard ? 😜`
@@ -147,7 +169,7 @@ function handlePostback(sender_psid, received_postback) {
       }
       else if (payload==='no' ) {
         response = {
-        "text": `Quel est la raison de votre message ? 🤔`
+        "text": `Quelle est la raison de ton message ? 🤔`
         }
         // Send the response message
         callSendAPI(sender_psid, response);
@@ -208,17 +230,17 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Strict 👮",
-                    "payload": "absence1",
+                    "payload": "absencebest1",
                   },
                   {
                     "type": "postback",
                     "title": "Compréhensif 💁",
-                    "payload": "absence2",
+                    "payload": "absencebest2",
                   },
                   {
                     "type": "postback",
                     "title": "Amusant 😂",
-                    "payload": "absence3",
+                    "payload": "absencebest3",
                   }
                 ],
               }]
@@ -226,18 +248,36 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
       }
-      else if (payload==='absence1'||payload==='absence2'||payload==='absence3'){
-        humor = (payload==='absence1') ? 1 : ((payload==='absence2')? 2 : 3);
+      else if (payload==='absence1'||payload==='absence2'||payload==='absence3'||payload==='absencebest1'||payload==='absencebest2'||payload==='absencebest3') {    
+        // Create the payload for a basic text message
+        humor = (payload==='absence1'||payload==='absencebest1') ? 1 : ((payload==='absence2'||payload==='absencebest2')? 2 : 3);
         console.log("humor var : " + humor)
-
-        do {
-          absence = importedJSON.absence[Math.floor((Math.random() * importedJSON.absence.length))];  
-          console.log("Excuse : " + absence.text)
-          console.log("humour : " + absence.humor)
-          // Create the payload for a basic text message
-        } while (absence.humor !== humor);
-        response = {
-          "text": `Voici ton excuse : ${absence.text} `
+        //If it's not the first time
+        if(payload==='absence1'||payload==='absence2'||payload==='absence3'){
+          do {
+            absence = importedJSON.absence[Math.floor((Math.random() * importedJSON.absence.length))]; 
+          } while (absence.humor !== humor);
+          response = {
+            "text": `Une autre excuse : ${absence.text}`
+          }
+        }
+        //If we want the best excuse
+        else {
+          var absenceLenght=importedJSON.absence.length;
+          var bestabsencevalue=0;
+          var bestabsenceid=0;
+          for(var i=0;i<absenceLenght; i++){
+            if(bestabsencevalue<importedJSON.absence[i].note && importedJSON.absence[i].humor === humor){
+              bestabsencevalue=importedJSON.absence[i].note;
+              bestabsenceid=importedJSON.absence[i].id;
+              console.log("We just find a better value");
+            }
+            else;
+          }
+          absence = importedJSON.absence[bestabsenceid];
+          response = {
+            "text": `La meilleur excuse est : ${absence.text}`
+          }
         }
 
         callSendAPI(sender_psid, response);
@@ -252,7 +292,7 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Oui merci !👌",
-                    "payload": "exit",
+                    "payload": `exitabsence${absence.id}`,
                   },
                   {
                     "type": "postback",
@@ -317,17 +357,17 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Strict 👮",
-                    "payload": "intercours1",
+                    "payload": "intercoursbest1",
                   },
                   {
                     "type": "postback",
                     "title": "Compréhensif 💁",
-                    "payload": "intercours2",
+                    "payload": "intercoursbest2",
                   },
                   {
                     "type": "postback",
                     "title": "Amusant 😂",
-                    "payload": "intercours3",
+                    "payload": "intercoursbest3",
                   }
                 ],
               }]
@@ -335,21 +375,42 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
       }
-      else if (payload==='intercours1'||payload==='intercours2'||payload==='intercours3') {    
+      else if (payload==='intercours1'||payload==='intercours2'||payload==='intercours3'||payload==='intercoursbest1'||payload==='intercoursbest2'||payload==='intercoursbest3') {    
         // Create the payload for a basic text message
-        humor = (payload==='intercours1') ? 1 : ((payload==='intercours2')? 2 : 3);
+        humor = (payload==='intercours1'||payload==='intercoursbest1') ? 1 : ((payload==='intercours2'||payload==='intercoursbest2')? 2 : 3);
         console.log("humor var : " + humor)
-        do {
-          intercours = importedJSON.intercours[Math.floor((Math.random() * importedJSON.intercours.length))];;  
-          console.log("Excuse : " + intercours.text)
-          console.log("humour : " + intercours.humor)
-          // Create the payload for a basic text message
-        } while (intercours.humor !== humor);
-        response = {
-          "text": `Voici ton excuse : ${intercours.text}`
+        //If it's not the first time
+        if(payload==='intercours1'||payload==='intercours2'||payload==='intercours3'){
+          do {
+            intercours = importedJSON.intercours[Math.floor((Math.random() * importedJSON.intercours.length))]; 
+          } while (intercours.humor !== humor);
+          response = {
+            "text": `Une autre excuse : ${intercours.text}`
+          }
+        }
+        //If we want the best excuse
+        else {
+          var intercoursLenght=importedJSON.intercours.length;
+          var bestintercoursvalue=0;
+          var bestintercoursid=0;
+          for(var i=0;i<intercoursLenght; i++){
+            if(bestintercoursvalue<importedJSON.intercours[i].note && importedJSON.intercours[i].humor === humor){
+              bestintercoursvalue=importedJSON.intercours[i].note;
+              bestintercoursid=importedJSON.intercours[i].id;
+              console.log("We just find a better value");
+            }
+            else;
+          }
+          intercours = importedJSON.intercours[bestintercoursid];
+          response = {
+            "text": `La meilleur excuse est : ${intercours.text}`
+          }
         }
 
+
+      //TWe send the excuse
         callSendAPI(sender_psid, response);
+
         response = {
           "attachment": {
             "type": "template",
@@ -361,7 +422,7 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Oui merci !",
-                    "payload": "exit",
+                    "payload": `exitintercours${intercours.id}`,
                   },
                   {
                     "type": "postback",
@@ -481,17 +542,36 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
       }
-      else if (payload==='bus1'||payload==='bus2'||payload==='bus3') {  
-        humor = (payload==='bus1') ? 1 : ((payload==='bus2')? 2 : 3);
+      else if (payload==='bus1'||payload==='bus2'||payload==='bus3'||payload==='busbest1'||payload==='busbest2'||payload==='busbest3') {    
+        // Create the payload for a basic text message
+        humor = (payload==='bus1'||payload==='busbest1') ? 1 : ((payload==='bus2'||payload==='busbest2')? 2 : 3);
         console.log("humor var : " + humor)
-        do {
-          bus = importedJSON.bus[Math.floor((Math.random() * importedJSON.bus.length))];;  
-          console.log("Excuse : " + bus.text)
-          console.log("humour : " + bus.humor)
-          // Create the payload for a basic text message
-        } while (bus.humor !== humor);
-        response = {
-          "text": `Voici ton excuse : ${bus.text} `
+        //If it's not the first time
+        if(payload==='bus1'||payload==='bus2'||payload==='bus3'){
+          do {
+            bus = importedJSON.bus[Math.floor((Math.random() * importedJSON.bus.length))]; 
+          } while (bus.humor !== humor);
+          response = {
+            "text": `Une autre excuse : ${bus.text}`
+          }
+        }
+        //If we want the best excuse
+        else {
+          var busLenght=importedJSON.bus.length;
+          var bestibusvalue=0;
+          var bestbusid=0;
+          for(var i=0;i<busLenght; i++){
+            if(bestbusvalue<importedJSON.bus[i].note && importedJSON.bus[i].humor === humor){
+              bestbusvalue=importedJSON.bus[i].note;
+              bestbusid=importedJSON.bus[i].id;
+              console.log("We just find a better value");
+            }
+            else;
+          }
+          bus = importedJSON.bus[bestbusid];
+          response = {
+            "text": `La meilleur excuse est : ${bus.text}`
+          }
         }
 
         callSendAPI(sender_psid, response);
@@ -506,7 +586,7 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Oui merci !",
-                    "payload": "exit",
+                    "payload": `exitbus${bus.id}`,
                   },
                   {
                     "type": "postback",
@@ -542,17 +622,17 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Strict 👮",
-                    "payload": "train1",
+                    "payload": "trainbest1",
                   },
                   {
                     "type": "postback",
                     "title": "Compréhensif 💁",
-                    "payload": "train2",
+                    "payload": "trainbest2",
                   },
                   {
                     "type": "postback",
                     "title": "Amusant 😂",
-                    "payload": "train3",
+                    "payload": "trainbest3",
                   }
                 ],
               }]
@@ -560,19 +640,39 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
       }
-      else if (payload==='train1'||payload==='train2'||payload==='train3') {  
-        humor = (payload==='train1') ? 1 : ((payload==='train2')? 2 : 3);
+      else if (payload==='train1'||payload==='train2'||payload==='train3'||payload==='trainbest1'||payload==='trainbest2'||payload==='trainbest3') {    
+        // Create the payload for a basic text message
+        humor = (payload==='train1'||payload==='trainbest1') ? 1 : ((payload==='train2'||payload==='trainbest2')? 2 : 3);
         console.log("humor var : " + humor)
-        do {
-          train = importedJSON.train[Math.floor((Math.random() * importedJSON.train.length))];;  
-          console.log("Excuse : " + train.text)
-          console.log("humour : " + train.humor)
-          // Create the payload for a basic text message
-        } while (train.humor !== humor);
-        response = {
-          "text": `Voici ton excuse : ${train.text}`
+        //If it's not the first time
+        if(payload==='train1'||payload==='train2'||payload==='train3'){
+          do {
+            train = importedJSON.train[Math.floor((Math.random() * importedJSON.train.length))]; 
+          } while (train.humor !== humor);
+          response = {
+            "text": `Une autre excuse : ${train.text}`
+          }
+        }
+        //If we want the best excuse
+        else {
+          var trainLenght=importedJSON.train.length;
+          var besttrainvalue=0;
+          var besttrainid=0;
+          for(var i=0;i<trainLenght; i++){
+            if(besttrainvalue<importedJSON.train[i].note && importedJSON.train[i].humor === humor){
+              besttrainvalue=importedJSON.train[i].note;
+              besttrainid=importedJSON.train[i].id;
+              console.log("We just find a better value");
+            }
+            else;
+          }
+          train = importedJSON.train[besttrainid];
+          response = {
+            "text": `La meilleur excuse est : ${train.text}`
+          }
         }
 
+      //We send the excuse
         callSendAPI(sender_psid, response);
         response = {
           "attachment": {
@@ -585,7 +685,7 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Oui merci !",
-                    "payload": "exit",
+                    "payload": `exittrain${train.id}`,
                   },
                   {
                     "type": "postback",
@@ -622,17 +722,17 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Strict 👮",
-                    "payload": "marche1",
+                    "payload": "marchebest1",
                   },
                   {
                     "type": "postback",
                     "title": "Compréhensif 💁",
-                    "payload": "marche2",
+                    "payload": "marchebest2",
                   },
                   {
                     "type": "postback",
                     "title": "Amusant 😂",
-                    "payload": "marche3",
+                    "payload": "marchebest3",
                   }
                 ],
               }]
@@ -640,19 +740,37 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
       }
-      else if (payload==='marche1'||payload==='marche2'||payload==='marche3') {  
-        humor = (payload==='marche1') ? 1 : ((payload==='marche2')? 2 : 3);
+      else if (payload==='marche1'||payload==='marche2'||payload==='marche3'||payload==='marchebest1'||payload==='marchebest2'||payload==='marchebest3') {    
+        // Create the payload for a basic text message
+        humor = (payload==='marche1'||payload==='marchebest1') ? 1 : ((payload==='marche2'||payload==='imarchebest2')? 2 : 3);
         console.log("humor var : " + humor)
-        do {
-          marche = importedJSON.marche[Math.floor((Math.random() * importedJSON.marche.length))];;  
-          console.log("Excuse : " + marche.text)
-          console.log("humour : " + marche.humor)
-          // Create the payload for a basic text message
-        } while (marche.humor !== humor);
-        response = {
-          "text": `Voici ton excuse : ${marche.text} `
+        //If it's not the first time
+        if(payload==='marche1'||payload==='marche2'||payload==='marche3'){
+          do {
+            marche = importedJSON.marche[Math.floor((Math.random() * importedJSON.marche.length))]; 
+          } while (marche.humor !== humor);
+          response = {
+            "text": `Une autre excuse : ${marche.text}`
+          }
         }
-
+        //If we want the best excuse
+        else {
+          var marcheLenght=importedJSON.marche.length;
+          var bestmarchevalue=0;
+          var bestmarcheid=0;
+          for(var i=0;i<marcheLenght; i++){
+            if(bestmarchevalue<importedJSON.marche[i].note && importedJSON.marche[i].humor === humor){
+              bestmarchevalue=importedJSON.marche[i].note;
+              bestmarcheid=importedJSON.marche[i].id;
+              console.log("We just find a better value");
+            }
+            else;
+          }
+          marche = importedJSON.marche[bestmarcheid];
+          response = {
+            "text": `La meilleur excuse est : ${marche.text}`
+          }
+        }
         callSendAPI(sender_psid, response);
         response = {
           "attachment": {
@@ -665,7 +783,7 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Oui merci !",
-                    "payload": "exit",
+                    "payload": `exitmarche${marche.id}`,
                   },
                   {
                     "type": "postback",
@@ -702,17 +820,17 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Strict 👮",
-                    "payload": "velo1",
+                    "payload": "velobest1",
                   },
                   {
                     "type": "postback",
                     "title": "Compréhensif 💁",
-                    "payload": "velo2",
+                    "payload": "velobest2",
                   },
                   {
                     "type": "postback",
                     "title": "Amusant 😂",
-                    "payload": "velo3",
+                    "payload": "velobest3",
                   }
                 ],
               }]
@@ -720,17 +838,36 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
       }
-      else if (payload==='velo1'||payload==='velo2'||payload==='velo3') {  
-        humor = (payload==='velo1') ? 1 : ((payload==='velo2')? 2 : 3);
+      else if (payload==='velo1'||payload==='velo2'||payload==='velo3'||payload==='velobest1'||payload==='velobest2'||payload==='velobest3') {    
+        // Create the payload for a basic text message
+        humor = (payload==='velo1'||payload==='velobest1') ? 1 : ((payload==='velo2'||payload==='velobest2')? 2 : 3);
         console.log("humor var : " + humor)
-        do {
-          velo = importedJSON.velo[Math.floor((Math.random() * importedJSON.velo.length))];;  
-          console.log("Excuse : " + velo.text)
-          console.log("humour : " + velo.humor)
-          // Create the payload for a basic text message
-        } while (velo.humor !== humor);
-        response = {
-          "text": `Voici ton excuse : ${velo.text}`
+        //If it's not the first time
+        if(payload==='velo1'||payload==='velo2'||payload==='velo3'){
+          do {
+            velo = importedJSON.velo[Math.floor((Math.random() * importedJSON.velo.length))]; 
+          } while (velo.humor !== humor);
+          response = {
+            "text": `Une autre excuse : ${velo.text}`
+          }
+        }
+        //If we want the best excuse
+        else {
+          var veloLenght=importedJSON.velo.length;
+          var bestvelovalue=0;
+          var bestveloid=0;
+          for(var i=0;i<veloLenght; i++){
+            if(bestvelovalue<importedJSON.velo[i].note && importedJSON.velo[i].humor === humor){
+              bestvelovalue=importedJSON.velo[i].note;
+              bestveloid=importedJSON.velo[i].id;
+              console.log("We just find a better value");
+            }
+            else;
+          }
+          velo = importedJSON.velo[bestveloid];
+          response = {
+            "text": `La meilleur excuse est : ${velo.text}`
+          }
         }
 
         callSendAPI(sender_psid, response);
@@ -745,7 +882,7 @@ function handlePostback(sender_psid, received_postback) {
                   {
                     "type": "postback",
                     "title": "Oui merci !",
-                    "payload": "exit",
+                    "payload": `exitvelo${velo.id}`,
                   },
                   {
                     "type": "postback",
@@ -769,11 +906,83 @@ function handlePostback(sender_psid, received_postback) {
         response = {"text": `Viens faire un tour sur notre site --> http://urlz.fr/75R3 👈`}
         callSendAPI(sender_psid, response);
         response = {"text": `Télécharge notre application sous android --> http://urlz.fr/75R4 👈`}
+        console.log('Sending the simple exit message'); 
       }  
-    }
+      //In case the user is satisfait with this excuse, we add +1 to the note
+      else {
+        var intercoursLenght=importedJSON.intercours.length;
+        var absenceLenght=importedJSON.absence.length;
+        var busLenght=importedJSON.bus.length;
+        var veloLenght=importedJSON.velo.length;
+        var trainLenght=importedJSON.train.length;
+        var marcheLenght=importedJSON.marche.length;
+
+        for(var i=0;i<intercoursLenght; i++){
+          if (payload === `exitintercours${i}`){
+            let result = db.get('intercours').find({ id: i }).update('note', n => n + 1).value();
+            db.write();
+            console.log(`Writing into ${payload}`);
+          }
+          else;
+        }
+        i=0;
+        for(var i=0;i<absenceLenght; i++){
+          if (payload === `exitabsence${i}`){
+            let result = db.get('absence').find({ id: i }).update('note', n => n + 1).value();
+            db.write();
+            console.log(`Writing into ${payload}`);
+          }
+          else;
+        }
+        i=0;
+        for(var i=0;i<busLenght; i++){
+          if (payload === `exitbus${i}`){
+            let result = db.get('bus').find({ id: i }).update('note', n => n + 1).value();
+            db.write();
+            console.log(`Writing into ${payload}`);
+          }
+          else;
+        }
+        i=0;
+        for(var i=0;i<veloLenght; i++){
+          if (payload === `exitvelo${i}`){
+            let result = db.get('velo').find({ id: i }).update('note', n => n + 1).value();
+            db.write();
+            console.log(`Writing into ${payload}`);
+          }
+          else;
+        }
+        i=0;
+        for(var i=0;i<trainLenght; i++){
+          if (payload === `exittrain${i}`){
+            let result = db.get('train').find({ id: i }).update('note', n => n + 1).value();
+            db.write();
+            console.log(`Writing into ${payload}`);
+          }
+          else;
+        }
+        i=0;
+        for(var i=0;i<marcheLenght; i++){
+          if (payload === `exitmarche${i}`){
+            let result = db.get('marche').find({ id: i }).update('note', n => n + 1).value();
+            db.write();
+            console.log(`Writing into ${payload}`);
+          }
+          else;
+        }
+        i=0;
+        response = {"text": `Merci ! A bientôt !! ✌ `}
+        callSendAPI(sender_psid, response);
+        response = {"text": `Viens faire un tour sur notre site --> http://urlz.fr/75R3 👈`}
+        callSendAPI(sender_psid, response);
+        response = {"text": `Télécharge notre application sous android --> http://urlz.fr/75R4 👈`}
+        console.log('Sending the exit message and adding the bonus'); 
+      }
+    
         // Sends the response message
+  
+
   callSendAPI(sender_psid, response); 
-  })
 }
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
