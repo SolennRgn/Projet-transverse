@@ -70,7 +70,7 @@ Vous pouvez télécharger ce projet à l'adresse git : https://github.com/TimRD/
 
 ## API Reference
 
-Ce projet fait appel à l'API de facebook messenger ainsi qu'à une API développée par les concepteurs à l'adresse : http://54.37.159.119/trouvetonexcuse/API/excuses.json Aucun autorisation n'est nécessaire, ces excuses sont libres de droit.
+Ce projet fait appel à l'API de facebook messenger ainsi qu'à une API développée par les concepteurs à l'adresse : https://pacific-springs-69478.herokuapp.com/excuses Aucun autorisation n'est nécessaire, ces excuses sont libres de droit.
 
 Le NLP de facebook messenger est aussi utilisé pour faciliter la reconnaisssance du langage naturel.
 
